@@ -1,5 +1,5 @@
-#include <utility/uniform_setter.h>
-#include <utility/util.h>
+#include <gl_util/uniform_setter.h>
+#include <gl_util/util.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <stdexcept>
 #include <format>

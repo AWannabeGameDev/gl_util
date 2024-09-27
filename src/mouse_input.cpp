@@ -1,4 +1,4 @@
-#include "utility/mouse_input.h"
+#include "gl_util/mouse_input.h"
 #include <stdexcept>
 
 MouseInput::MouseInput(GLFWwindow* window) :

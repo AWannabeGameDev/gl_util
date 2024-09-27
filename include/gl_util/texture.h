@@ -2,7 +2,7 @@
 #define TEXTURE_H
 
 #include <string_view>
-#include <utility/util.h>
+#include <gl_util/util.h>
 
 struct TextureData
 {

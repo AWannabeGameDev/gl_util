@@ -1,6 +1,6 @@
 #define STB_IMAGE_IMPLEMENTATION
-#include <utility/stb_image.h>
-#include <utility/texture.h>
+#include <gl_util/stb_image.h>
+#include <gl_util/texture.h>
 
 TextureData loadTexture(std::string_view path, bool flip)
 {

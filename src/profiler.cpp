@@ -1,4 +1,4 @@
-#include <utility/profiler.h>
+#include <gl_util/profiler.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 

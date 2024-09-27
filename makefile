@@ -4,8 +4,8 @@ srcDirs = src
 incDirs = ..\dependencies\include include
 intermDir = interms
 
-outDebug = lib\utility_debug.lib
-outRelease = lib\utility_release.lib
+outDebug = lib\gl_util_debug.lib
+outRelease = lib\gl_util_release.lib
 
 preDefinesDebug = _DEBUG
 predefinesRelease = 
