@@ -1,11 +1,11 @@
 # Just change these variables and everything just magically works :D
 
 srcDirs = src
-incDirs = ..\dependencies\include include
+incDirs = ..\deps\include include
 intermDir = interms
 
-outDebug = lib\gl_util_debug.lib
-outRelease = lib\gl_util_release.lib
+outDebug = lib\gl_utild.lib
+outRelease = lib\gl_util.lib
 
 preDefinesDebug = _DEBUG
 predefinesRelease = 
