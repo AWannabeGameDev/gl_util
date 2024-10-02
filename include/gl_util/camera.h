@@ -6,11 +6,12 @@
 
 class Camera
 {
-public :
+private :
 	glm::vec3 position;
 	glm::quat rotation;
 	glm::mat4 projection;
 
+public :
 	Camera(float fov, float aspectRatio, float near, float far);
 
 	glm::mat4 viewMatrix() const;
@@ -22,6 +23,8 @@ public :
 
 	void rotateGlobal(const glm::vec3& globalAxis, float radians);
 	void rotateLocal(const glm::vec3& localAxis, float radians);
+	void translate(const glm::vec3& displacement);
+	void setPosition(const glm::vec3& newPosition);
 };
 
 #endif

@@ -44,3 +44,13 @@ void Camera::rotateLocal(const glm::vec3& localAxis, float radians)
 {
 	rotateGlobal(rotation * localAxis, radians);
 }
+
+void Camera::translate(const glm::vec3& displacement)
+{
+	position += displacement;
+}
+
+void Camera::setPosition(const glm::vec3& newPosition)
+{
+	position = newPosition;
+}
