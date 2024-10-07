@@ -7,7 +7,7 @@
 class Camera
 {
 private :
-	glm::vec3 position;
+	glm::vec3 positionVec;
 	glm::quat rotation;
 	glm::mat4 projection;
 
@@ -16,6 +16,7 @@ public :
 
 	glm::mat4 viewMatrix() const;
 	const glm::mat4& projectionMatrix() const;
+	const glm::vec3& position() const;
 
 	const glm::vec3 right() const;
 	const glm::vec3 up() const;
