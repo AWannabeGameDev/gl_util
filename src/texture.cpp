@@ -22,6 +22,8 @@ TextureData loadTexture(std::string_view path, bool flip)
 unsigned int createTexture(unsigned int target, const TextureParameterSet& texParams, 
 						   unsigned int format, std::string_view path, bool flip)
 {
+	glActiveTexture(GL_TEXTURE0);
+
 	unsigned int texID;
 	glGenTextures(1, &texID);
 	glBindTexture(target, texID);
@@ -46,6 +48,8 @@ unsigned int createTexture(unsigned int target, const TextureParameterSet& texPa
 unsigned int createTexture(unsigned int target, const TextureParameterSet& texParams, 
 						   unsigned int format, int width, int height, int numLayers)
 {
+	glActiveTexture(GL_TEXTURE0);
+
 	unsigned int texID;
 	glGenTextures(1, &texID);
 	glBindTexture(target, texID);
@@ -75,6 +79,8 @@ unsigned int createTexture(unsigned int target, const TextureParameterSet& texPa
 unsigned int createCubemap(const TextureParameterSet& texParams, 
 						   unsigned int format, std::string_view paths[6], bool flip)
 {
+	glActiveTexture(GL_TEXTURE0);
+
 	unsigned int texID;
 	glGenTextures(1, &texID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, texID);
@@ -103,6 +109,8 @@ unsigned int createCubemap(const TextureParameterSet& texParams,
 unsigned int createCubemap(const TextureParameterSet& texParams, 
 						   unsigned int format, int width, int height, int numLayers)
 {
+	glActiveTexture(GL_TEXTURE0);
+	
 	if(numLayers == 0)
 	{
 		unsigned int texID;

@@ -4,7 +4,7 @@
 #include <sstream>
 #include <glm/gtc/type_ptr.hpp>
 
-void glDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, 
+void openglDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, 
 					 GLsizei length, const GLchar* message, const void* userParam)
 {
 	printf("OpenGL debug message : %s\n", message);
