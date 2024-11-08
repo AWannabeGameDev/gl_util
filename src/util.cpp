@@ -89,17 +89,33 @@ unsigned int compileShader(unsigned int type, std::string_view path)
 	return shader;
 }
 
-unsigned int createShaderProgram(std::string_view vertexShaderPath, std::string_view fragmentShaderPath)
+unsigned int createShaderProgram(const std::initializer_list<std::string_view>& shaderPaths)
 {
-	unsigned int vshader = compileShader(GL_VERTEX_SHADER, vertexShaderPath);
-	unsigned int fshader = compileShader(GL_FRAGMENT_SHADER, fragmentShaderPath);
-
 	unsigned int program = glCreateProgram();
-	glAttachShader(program, vshader);
-	glAttachShader(program, fshader);
+
+	for(const std::string_view& path : shaderPaths)
+	{
+		std::string_view extension{path.substr(path.size() - 3, 3)};
+		int extensionHash = extension[0] + (2 * extension[1]) + (3 * extension[2]);
+
+		unsigned int shaderType;
+
+		switch(extensionHash)
+		{
+			case 'v' + (2 * 'x') + (3 * 's') : shaderType = GL_VERTEX_SHADER; break;
+			case 'g' + (2 * 'm') + (3 * 's') : shaderType = GL_GEOMETRY_SHADER; break;
+			case 'f' + (2 * 'm') + (3 * 's') : shaderType = GL_FRAGMENT_SHADER; break;
+			case 'c' + (2 * 'p') + (3 * 's') : shaderType = GL_COMPUTE_SHADER; break;
+		}
+
+		unsigned int shader = compileShader(shaderType, path);
+		glAttachShader(program, shader);
+		glDeleteShader(shader);
+	}
+
 	glLinkProgram(program);
 
-#ifdef _DEBUG
+	#ifdef _DEBUG
 
 	int success;
 	glGetProgramiv(program, GL_LINK_STATUS, &success);
@@ -119,52 +135,7 @@ unsigned int createShaderProgram(std::string_view vertexShaderPath, std::string_
 		return 0;
 	}
 
-#endif
-
-	glDeleteShader(vshader);
-	glDeleteShader(fshader);
-
-	return program;
-}
-
-unsigned int createShaderProgram(std::string_view vertexShaderPath, std::string_view geometryShaderPath, 
-								 std::string_view fragmentShaderPath)
-{
-	unsigned int vshader = compileShader(GL_VERTEX_SHADER, vertexShaderPath);
-	unsigned int gshader = compileShader(GL_GEOMETRY_SHADER, geometryShaderPath);
-	unsigned int fshader = compileShader(GL_FRAGMENT_SHADER, fragmentShaderPath);
-
-	unsigned int program = glCreateProgram();
-	glAttachShader(program, vshader);
-	glAttachShader(program, fshader);
-	glAttachShader(program, gshader);
-	glLinkProgram(program);
-
-#ifdef _DEBUG
-
-	int success;
-	glGetProgramiv(program, GL_LINK_STATUS, &success);
-
-	if(success != GL_TRUE)
-	{
-		int logLength;
-		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
-
-		char* message = (char*)::operator new(logLength);
-		glGetProgramInfoLog(program, logLength, nullptr, message);
-
-		printf("Failed to link program : %s", message);
-
-		::operator delete(message);
-
-		return 0;
-	}
-
-#endif
-
-	glDeleteShader(vshader);
-	glDeleteShader(gshader);
-	glDeleteShader(fshader);
+	#endif
 
 	return program;
 }
