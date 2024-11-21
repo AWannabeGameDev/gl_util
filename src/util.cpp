@@ -17,6 +17,7 @@ GLFWwindow* initialize(int windowWidth, int windowHeight, std::string_view title
 		printf("Failed to initialize GLFW\n");
 		return nullptr;
 	}
+	
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, majorVersion);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minorVersion);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -50,9 +51,10 @@ unsigned int compileShader(unsigned int type, std::string_view path)
 
 	if(!file.is_open())
 	{
-		printf("Failed to open shader file\n");
+		printf("Failed to open shader file %s.\n", path.data());
 		return 0;
-	} else
+	} 
+	else
 	{
 		sstream << file.rdbuf();
 		source = sstream.str();

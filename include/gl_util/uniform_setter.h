@@ -43,6 +43,7 @@ public :
 	void setUniform(unsigned int shaderID, std::string_view fieldName, int integ);
 
 	void bindUniformBlock(unsigned int shaderID, std::string_view blockName, unsigned int bindingIndex);
+	void bindShaderStorageBlock(unsigned int shaderID, std::string_view blockName, unsigned int bindingIndex);
 };
 
 #endif

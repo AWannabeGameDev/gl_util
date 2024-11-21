@@ -77,3 +77,16 @@ void UniformSetter::bindUniformBlock(unsigned int shaderID, std::string_view blo
 
 	glUniformBlockBinding(shaderID, blockIndex, bindingIndex);
 }
+
+void UniformSetter::bindShaderStorageBlock(unsigned int shaderID, std::string_view blockName, unsigned int bindingIndex)
+{
+	unsigned int blockIndex = glGetProgramResourceIndex(shaderID, GL_SHADER_STORAGE_BLOCK, blockName.data());
+
+	if(blockIndex == GL_INVALID_INDEX)
+	{
+		throw std::invalid_argument{std::format("{} is not a valid shader storage block name in shader {}", 
+									blockName, shaderID)};
+	}
+
+	glShaderStorageBlockBinding(shaderID, blockIndex, bindingIndex);
+}
